@@ -1,0 +1,48 @@
+import java.awt.AWTException;
+import java.awt.Dimension;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.Robot;
+import java.awt.Toolkit;
+
+public class MouseController{
+  private Dimension dim;
+  private static Robot robot;
+  
+  public MouseController(){
+    this.dim = Toolkit.getDefaultToolkit().getScreenSize();
+    try{
+       robot = new Robot();
+     } catch(AWTException e){
+        e.printStackTrace();
+     }
+   }
+   
+   public void move(int width, int heigh){
+      Point mousepoint = MouseInfo.getPointerInfo().getLocation();
+      width += mousepoint.x;
+      height += mousepoint.y;
+      try{
+        robot.delay(1);
+        robot.mouseMove(width,height);
+       } catch(Exception e){
+        e.printStackTrace();
+       }
+     }
+     
+    public static void main(String[] args) throws Exception{
+      MouseController mc = new MouseController();
+      Point mousepoint = MouseInfo.getPointerInfo.getLocation();
+      int curwidth = mousepoint.x;
+      int curwei = mousepoint.y;
+      for(;;){
+        mousepoint =  MouseInfo.getPointerInfo.getLocation();
+        if((mousepoion.x == curwidth ) && (mousepoint.y == curwei)){
+           mc.move(1,0);
+         }
+         curwidth = mousepoint.x;
+         curwei = mousepoint.y;
+         robot.delay(60000);
+       }
+    }
+    
